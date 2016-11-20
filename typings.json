@@ -1,0 +1,15 @@
+{
+  "name": "aurelia-aspnetcore",
+  "dependencies": {},
+  "globalDevDependencies": {
+    "angular-protractor": "registry:dt/angular-protractor#1.5.0+20160425143459",
+    "jasmine": "registry:dt/jasmine#2.2.0+20160505161446",
+    "node": "registry:dt/node",
+    "selenium-webdriver": "registry:dt/selenium-webdriver#2.44.0+20160317120654"
+  },
+  "globalDependencies": {
+    "daterangepicker": "registry:dt/daterangepicker#2.1.19+20160825152502",
+    "jquery": "registry:dt/jquery#1.10.0+20160929162922",
+    "moment": "registry:dt/moment#2.11.1+20161010105546"
+  }
+}

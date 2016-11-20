@@ -1,0 +1,8 @@
+{
+  "resolution": "main",
+  "tree": {
+    "src": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/992f7671e4154d5699eb050b638b28753584f993/daterangepicker/daterangepicker.d.ts",
+    "raw": "registry:dt/daterangepicker#2.1.19+20160825152502",
+    "typings": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/992f7671e4154d5699eb050b638b28753584f993/daterangepicker/daterangepicker.d.ts"
+  }
+}
