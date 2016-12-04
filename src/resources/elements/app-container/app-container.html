@@ -1,9 +1,52 @@
 <template>
 
-    <aside></aside>
-    <h1>hola</h1>
-    <div class="page">
-        <slot></slot>
+    <div class="app-frame app-frame--open">
+        
+        <div class="app-frame__side-nav">
+
+            <div class="side-nav">
+
+                <div class="side-nav__top">
+                    <div class="logo"></div>
+                    <div class="back-button"></div>
+                    <div class="nav-links">
+                        <a class="">Home</a>
+                        <a>Favourites</a>
+                    </div>
+                </div>
+                
+                <div class="side-nav__bottom">
+                    <div class="authentication"></div>
+                    <div class="side-nav-toggle"></div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="app-frame__page">
+            
+            <div class="page">
+                <div class="page__overlay"></div>
+                <slot></slot>
+            </div>
+
+        </div>
+
+        <div class="app-frame__mobile-nav">
+            
+            <div class="mobile-nav__left">
+                <div class="btn-icon btn-icon-side-nav-toggle"></div>
+                <a class="btn-icon btn-icon-search"></div>
+                <a class="btn-icon btn-icon-back"></div>
+            </div>
+
+            <div class="mobile-nav__right">
+                <div class="notifications"></div>
+            </div>
+
+        </div>
+
     </div>
 
 </template>

@@ -1,0 +1,59 @@
+
+@custom-media --small-devices (width >= 544px);
+@custom-media --medium-devices (width >= 768px);
+@custom-media --large-devices (width >= 992px);
+@custom-media --x-large-devices (width >= 1200px);
+
+.app-frame {
+
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.app-frame__side-bar {
+
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 0px;
+    will-change: width;
+
+    @media(--small-devices) {
+        width:50px;
+    }
+}
+
+.app-frame--side-bar-open .app-frame__side-bar {
+
+    width: 80%;
+    min-width: 200px;
+    max-width: 100%;
+
+    @media(--small-devices) {
+        width:200px;
+    }
+}
+
+.app-frame__page {
+
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.app-frame__mobile-nav {
+
+    position: absolute;
+    top: 50px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    @media(--small-devices) {
+        top:0px;
+    }
+}
