@@ -1,8 +1,5 @@
 
-@custom-media --small-devices (width >= 544px);
-@custom-media --medium-devices (width >= 768px);
-@custom-media --large-devices (width >= 992px);
-@custom-media --x-large-devices (width >= 1200px);
+@import 'app-frame-breakpoints.css';
 
 .app-frame {
 
@@ -12,7 +9,7 @@
 }
 
 .app-frame__side-bar {
-
+ 
     position: absolute;
     top: 0;
     bottom: 0;
