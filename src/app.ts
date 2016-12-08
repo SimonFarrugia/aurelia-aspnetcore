@@ -2,7 +2,7 @@ import {Router, RouterConfiguration} from 'aurelia-router';
 
 export class App {
 
-  //public router: Router;
+  public router: Router;
 
   public configureRouter(config: RouterConfiguration, router: Router){
 
@@ -15,11 +15,26 @@ export class App {
 
     config.mapUnknownRoutes("./");
 
-    //this.router = router;
+    this.router = router;
   }
 
-  // constructor() {
-  //   this.router.currentInstruction.
-  // }
+
+  public pageViewModel: any;
+  
+  constructor() {
+    
+  }
+
+  get currentRouteViewModel() {
+      const view = this.pageViewModel.view;
+
+      // The view property can be null at first
+      return view ? view.controller.viewModel : null;
+  }
+
+  get routeActions() {
+      return this.currentRouteViewModel && this.currentRouteViewModel.actions || [];
+  }
+
   message = 'Hello World!';
 }

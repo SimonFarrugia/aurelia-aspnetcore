@@ -19,7 +19,7 @@ export class Components {
     }
         
 
-    public actions: Array<Object> = [
+    public actions = [
         { title: "comp1" },
         { title: "Comp2" }
     ];

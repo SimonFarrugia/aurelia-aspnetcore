@@ -1,18 +1,16 @@
 <template>
 
   <require from="./resources/elements/app-frame/app-frame"></require>
+  <require from="./resources/elements/page-header/page-header"></require>
   
-  <!--<h1>aaaaaaaaa ${1+Math.random()}</h1>
-
-  <router-view layout-view="layouts/test-layout.html" vi></router-view>
-
-  <a route-href="route: components">link</a>
-
-  <h1>${message}</h1>-->
   <app-frame>
-        <p>olllllllllllllo</p>
+        
+        <page-header page-title.bind="router.currentInstruction.config.title" page-actions.bind="routeActions"></page-header>
+        <router-view view-model.ref="pageViewModel"></router-view>
         
   </app-frame>
 
-  <a route-href="route: components">link</a>
+  <a route-href="route: about">about link</a>
+  <a route-href="route: components">components link</a>
+
 </template>

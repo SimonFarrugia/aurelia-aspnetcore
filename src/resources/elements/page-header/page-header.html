@@ -1,0 +1,15 @@
+<template>
+
+    <header>
+
+        <div>${pageTitle}</div>
+
+        <ul if.bind="pageActions != null">
+            <li repeat.for="action of pageActions">
+                ${action.title}
+            </li>
+        </ul>
+
+    </header>
+
+</template>

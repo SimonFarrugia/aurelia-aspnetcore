@@ -1,7 +1,7 @@
 
 export class About {
     
-    public actions: Array<Object> = [
+    public actions = [
         { title: "About1" },
         { title: "About2" }
     ];
