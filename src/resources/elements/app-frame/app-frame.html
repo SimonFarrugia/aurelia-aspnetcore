@@ -1,18 +1,11 @@
 <template>
+
+    <require from="./app-frame.css" as="scoped"></require>
     <require from="./app-side-nav/app-side-nav"></require>
-    <require from="./app-page/app-page"></require>
     <require from="./app-mobile-nav/app-mobile-nav"></require>
 
-    <div class="app-frame app-frame--open">
+    <div class="app-frame-container">
         
-        <div class="app-frame__side-nav">
-
-            <app-side-nav>
-                
-            </app-side-nav>
-
-        </div>
-
         <div class="app-frame__page">
             
             <slot></slot>
@@ -21,9 +14,15 @@
 
         <div class="app-frame__mobile-nav">
             
-            <app-mobile-nav>
+            <app-mobile-nav></app-mobile-nav>
 
-            </app-mobile-nav>
+        </div>
+
+        <div class="app-frame__side-nav-underlay"></div>
+
+        <div class="app-frame__side-nav">
+
+            <app-side-nav></app-side-nav>
 
         </div>
 

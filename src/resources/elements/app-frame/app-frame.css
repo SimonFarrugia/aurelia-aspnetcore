@@ -1,14 +1,14 @@
 
 @import 'app-frame-breakpoints.css';
 
-.app-frame {
+.app-frame-container {
 
     position: relative;
     width: 100%;
     height: 100%;
 }
 
-.app-frame__side-bar {
+.app-frame__side-nav {
  
     position: absolute;
     top: 0;
@@ -22,10 +22,10 @@
     }
 }
 
-.app-frame--side-bar-open .app-frame__side-bar {
+.app-frame--side-nav-open .app-frame__side-nav {
 
     width: 80%;
-    min-width: 200px;
+    /*min-width: 200px;*/
     max-width: 100%;
 
     @media(--small-devices) {
@@ -40,17 +40,44 @@
     bottom: 0;
     left: 0;
     right: 0;
+
+    @media(--small-devices) {
+        left:50px;
+    }
+}
+
+.app-frame--side-nav-open .app-frame__page {
+
+    @media(--x-large-devices) {
+        left:200px;
+    }
 }
 
 .app-frame__mobile-nav {
 
     position: absolute;
-    top: 50px;
+    height: 50px;
     bottom: 0;
     left: 0;
     right: 0;
 
     @media(--small-devices) {
-        top:0px;
+        height:0px;
     }
+}
+
+
+.app-frame__page {
+    background-color: red;
+    transition: bottom 0.3s, top 0.3s, left 0.3s, right 0.3s;
+}
+
+.app-frame__side-nav {
+    background-color: blue;
+    transition: width 0.3s, max-width 0.3s, min-width 0.3s;
+}
+
+.app-frame__mobile-nav {
+    background-color: green;
+    transition: height 0.3s;
 }

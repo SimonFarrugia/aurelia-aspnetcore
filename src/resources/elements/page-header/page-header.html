@@ -1,13 +1,15 @@
 <template>
 
-    <header>
+    <header class="page-header">
 
-        <div>${pageTitle}</div>
+        <div class="page-header__title">${pageTitle}</div>
 
         <ul if.bind="pageActions != null">
+
             <li repeat.for="action of pageActions">
                 ${action.title}
             </li>
+
         </ul>
 
     </header>
