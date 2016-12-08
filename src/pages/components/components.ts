@@ -19,6 +19,11 @@ export class Components {
     }
         
 
+    public actions: Array<Object> = [
+        { title: "comp1" },
+        { title: "Comp2" }
+    ];
+
     constructor() {
 
     }

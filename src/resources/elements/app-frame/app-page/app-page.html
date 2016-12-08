@@ -1,8 +1,22 @@
 <template>
 
     <div class="page">
-        <div class="page__overlay"></div>
-        <slot></slot>
+
+        <header>
+            <h1>${router.currentInstruction.config.title}</h1>
+
+            <ul if.bind="pageViewModel.actions != null">
+                <li repeat.for="action of pageViewModel.actions">
+                    ${action.title}
+                </li>
+            </ul>
+
+        </header>
+
+        <main>
+            <router-view view-model.ref="pageViewModel"></router-view>
+        </main>
+
     </div>
 
 </template>

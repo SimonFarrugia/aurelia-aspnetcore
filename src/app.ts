@@ -2,7 +2,7 @@ import {Router, RouterConfiguration} from 'aurelia-router';
 
 export class App {
 
-  public router: Router;
+  //public router: Router;
 
   public configureRouter(config: RouterConfiguration, router: Router){
 
@@ -15,7 +15,7 @@ export class App {
 
     config.mapUnknownRoutes("./");
 
-    this.router = router;
+    //this.router = router;
   }
 
   // constructor() {

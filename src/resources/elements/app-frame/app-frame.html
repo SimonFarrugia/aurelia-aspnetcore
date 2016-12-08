@@ -1,32 +1,29 @@
 <template>
+    <require from="./app-side-nav/app-side-nav"></require>
+    <require from="./app-page/app-page"></require>
+    <require from="./app-mobile-nav/app-mobile-nav"></require>
 
     <div class="app-frame app-frame--open">
         
         <div class="app-frame__side-nav">
 
-            <app-side-nav></app-side-nav>
+            <app-side-nav>
+                
+            </app-side-nav>
 
         </div>
 
         <div class="app-frame__page">
             
-            <app-page>
-
-            </app-page>
+            <app-page></app-page>
 
         </div>
 
         <div class="app-frame__mobile-nav">
             
-            <div class="mobile-nav__left">
-                <div class="btn-icon btn-icon-side-nav-toggle"></div>
-                <a class="btn-icon btn-icon-search"></div>
-                <a class="btn-icon btn-icon-back"></div>
-            </div>
+            <app-mobile-nav>
 
-            <div class="mobile-nav__right">
-                <div class="notifications"></div>
-            </div>
+            </app-mobile-nav>
 
         </div>
 
