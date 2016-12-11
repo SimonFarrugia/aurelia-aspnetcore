@@ -1,8 +1,10 @@
 <template>
 
-    <header class="page-header">
+    <require from="./app-header.css" as="scoped"></require>
 
-        <div class="page-header__title">${pageTitle}</div>
+    <header class="app-header-container">
+
+        <div class="app-header__title">${pageTitle}</div>
 
         <ul if.bind="pageActions != null">
 

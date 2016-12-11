@@ -10,74 +10,101 @@
 
 .app-frame__side-nav {
  
+    z-index: 1;
     position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
-    width: 0px;
-    will-change: width;
+
+    max-width: 80%;
+}
+
+
+.app-frame__body {
+
+    position: relative;
+    margin-left: 0px;
+    height: 100%;
+
+    overflow: hidden;
 
     @media(--small-devices) {
-        width:50px;
+        margin-left:50px;
     }
 }
 
-.app-frame--side-nav-open .app-frame__side-nav {
 
-    width: 80%;
-    /*min-width: 200px;*/
-    max-width: 100%;
+.app-frame__side-nav[open] + .app-frame__body {
 
-    @media(--small-devices) {
-        width:200px;
+    @media(--large-devices) {
+        margin-left:250px;
     }
 }
 
-.app-frame__page {
+
+.app-frame__body__overlay {
+    
+    position:absolute;
+    top:0px;
+    left:0px;
+    bottom:0px;
+    right:0px;
+    display: none;
+}
+
+
+.app-frame__side-nav[open] + .app-frame__body > .app-frame__body__overlay {
+
+    display: block;
+
+    @media(--large-devices) {
+        display: none;
+    }
+}
+
+
+.app-frame__body__header {
+    
+    position: absolute;
+    top:0px;
+    width:100%;
+}
+
+
+.app-frame__body__page {
 
     position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    top: 50px;
+    bottom: 50px;
+    width: 100%;
 
     @media(--small-devices) {
-        left:50px;
+        bottom:0px;
     }
 }
 
-.app-frame--side-nav-open .app-frame__page {
 
-    @media(--x-large-devices) {
-        left:200px;
-    }
-}
-
-.app-frame__mobile-nav {
+.app-frame__body__mobile-nav {
 
     position: absolute;
     height: 50px;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    bottom: 0px;
+    width:100%;
 
     @media(--small-devices) {
-        height:0px;
+        bottom: -50px;
     }
 }
 
 
-.app-frame__page {
-    background-color: red;
-    transition: bottom 0.3s, top 0.3s, left 0.3s, right 0.3s;
+.app-frame__body {
+    background-color: #FAFAFA;
+    transition: margin-left 0.2s;
 }
 
-.app-frame__side-nav {
-    background-color: blue;
-    transition: width 0.3s, max-width 0.3s, min-width 0.3s;
-}
 
-.app-frame__mobile-nav {
-    background-color: green;
-    transition: height 0.3s;
+.app-frame__body__mobile-nav {
+    background-color: #fff;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);;
+    transition: bottom 0.2s;
 }

@@ -1,0 +1,29 @@
+
+@import '../app-frame-breakpoints.css';
+
+.side-nav-container {
+    
+    height: 100%;
+    width: 0px;
+    will-change: width;
+
+    @media(--small-devices) {
+        width:50px;
+    }
+}
+
+[open] > .side-nav-container {
+
+    width: 100%;
+
+    @media(--small-devices) {
+        width:250px;
+    }
+}
+
+
+.side-nav-container {
+    background-color: #fff;
+    box-shadow: 0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12),0 2px 4px -1px rgba(0,0,0,.2);
+    transition: width 0.2s, max-width 0.2s, min-width 0.2s;
+}

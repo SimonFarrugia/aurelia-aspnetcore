@@ -1,14 +1,29 @@
+import {inject, bindable} from "aurelia-framework";
 
+@inject(Element)
 export class AppSideNav {
+
+    @bindable public open: Boolean;
+
+
+    constructor(public el: Element) {
+        
+    }
+
+    
+    openChanged(newValue: boolean, oldValue: Boolean) {
+
+        if(newValue) {
+            this.el.setAttribute("open", "");
+        }
+        else{
+            this.el.removeAttribute("open");
+        }
+    }
+    
 
     toggle() {
 
-            var appFrame = document.querySelector('app-frame');
-            var className = ' ' + appFrame.className + ' ';
-
-            appFrame.className = ~className.indexOf(' app-frame--side-nav-open ') ?
-                                className.replace(' app-frame--side-nav-open ', ' ') :
-                                appFrame.className + ' app-frame--side-nav-open';
-
+        this.open = !this.open;
     }
 }

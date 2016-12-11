@@ -26,14 +26,25 @@ export class App {
   }
 
   get currentRouteViewModel() {
-      const view = this.pageViewModel.view;
+      const view = this.pageViewModel && this.pageViewModel.view || null;
 
       // The view property can be null at first
       return view ? view.controller.viewModel : null;
   }
 
-  get routeActions() {
-      return this.currentRouteViewModel && this.currentRouteViewModel.actions || [];
+  // get routeActions() {
+  //     return this.currentRouteViewModel && this.currentRouteViewModel.actions || [];
+  // }
+
+  get currentPageData() {
+
+    let title = this.router.currentInstruction && this.router.currentInstruction.config.title || "";
+    let viewModel = this.currentRouteViewModel;
+
+    return {
+      title: title,
+      viewModel: viewModel
+    };
   }
 
   message = 'Hello World!';

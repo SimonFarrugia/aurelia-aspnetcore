@@ -1,31 +1,28 @@
 <template>
 
     <require from="./app-frame.css" as="scoped"></require>
+    <require from="./app-header/app-header"></require>
     <require from="./app-side-nav/app-side-nav"></require>
     <require from="./app-mobile-nav/app-mobile-nav"></require>
 
     <div class="app-frame-container">
         
-        <div class="app-frame__page">
+        <app-side-nav class="app-frame__side-nav" open.bind="sideNavOpen"></app-side-nav>
+         
+        <div class="app-frame__body">
             
-            <slot></slot>
-
-        </div>
-
-        <div class="app-frame__mobile-nav">
+            <app-header class="app-frame__body__header" page-title.bind="pageData.title" page-actions.bind="pageData.actions"></app-header>
             
-            <app-mobile-nav></app-mobile-nav>
+            <div class="app-frame__body__page">
+                <slot></slot>
+            </div>
+
+            <app-mobile-nav class="app-frame__body__mobile-nav"></app-mobile-nav>
+
+            <div class="app-frame__body__overlay" click.trigger="closeSideNav()"></div>
 
         </div>
-
-        <div class="app-frame__side-nav-underlay"></div>
-
-        <div class="app-frame__side-nav">
-
-            <app-side-nav></app-side-nav>
-
-        </div>
-
+    
     </div>
 
 </template>

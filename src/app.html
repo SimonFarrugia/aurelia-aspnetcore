@@ -1,12 +1,10 @@
 <template>
 
   <require from="./resources/elements/app-frame/app-frame"></require>
-  <require from="./resources/elements/page-header/page-header"></require>
   <require from="./app.css"></require>
 
-  <app-frame class="my-app-frame">
+  <app-frame class="my-app-frame" page-data.bind="currentPageData">
         
-        <page-header page-title.bind="router.currentInstruction.config.title" page-actions.bind="routeActions"></page-header>
         <router-view view-model.ref="pageViewModel"></router-view>
         
   </app-frame>
