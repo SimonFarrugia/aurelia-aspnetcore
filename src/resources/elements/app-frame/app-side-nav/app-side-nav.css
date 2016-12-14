@@ -2,101 +2,85 @@
 @import '../app-frame-breakpoints.css';
 
 :root {
-
     --mobile-sidebarOpen-width: 80vw;
-    --mobile-sidebarClosed-width: 0px;
+    --mobile-sidebarClosed-width: 0;
     --sidebarOpen-width: 250px;
     --sidebarClosed-width: 50px;
 }
 
 .side-nav-container {
-    
+    /* Display & Box Model */
     overflow: hidden;
     height: 100%;
-    will-change: width;
-
     width: var(--mobile-sidebarClosed-width);
-    
 
-    @media(--small-devices) {
+    /* Other */
+    will-change: width;
+    background-color: #fff;
+    box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+    transition: width 0.2s;
 
+    @media (--small-devices) {
+        /* Display & Box Model */
         width: var(--sidebarClosed-width);
     }
 }
 
 [open] > .side-nav-container {
-
+    /* Display & Box Model */
     width: var(--mobile-sidebarOpen-width);
 
-
-    @media(--small-devices) {
-
+    @media (--small-devices) {
+        /* Display & Box Model */
         width: var(--sidebarOpen-width);
     }
 }
 
-
 .side-nav-container .side-nav-container-inner {
+    /* Positioning */
+    position: relative;
+    float: right;
 
-    position:relative;
+    /* Display & Box Model */
     overflow: hidden;
     height: 100%;
-
-    float: right;
     width: var(--mobile-sidebarOpen-width);
-    
 
-    @media(--small-devices) {
-        
-        width: 100%;
+    @media (--small-devices) {
+        /* Positioning */
         float: left;
+
+        /* Display & Box Model */
+        width: 100%;
     }
 }
 
-
-.side-nav-container {
-    background-color: #fff;
-    box-shadow: 0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12),0 2px 4px -1px rgba(0,0,0,.2);
-
-}
-
-.side-nav-container {
-    transition: width 0.2s, max-width 0.2s, min-width 0.2s, transform 0.2s, margin-left 0.2s;
-}
-
-
 .side-nav-container .side-nav__logo {
-    
     height: 50px;
     text-align: center;
     line-height: 50px;
     white-space: nowrap;
 
-    
     & small {
-
         display: none;
 
-        @media(--small-devices) {
+        @media (--small-devices) {
             display: block;
         }
     }
 
     & big {
-
         display: block;
 
-        @media(--small-devices) {
+        @media (--small-devices) {
             display: none;
         }
     }
-    
 }
 
 [open] > .side-nav-container .side-nav__logo {
-
     & small {
-        display:none;
+        display: none;
     }
 
     & big {
