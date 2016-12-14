@@ -15,11 +15,13 @@
     "bootstrap": "^3.3.7",
     "daterangepicker": "0.0.3",
     "jquery": "^3.1.1",
-    "moment": "^2.16.0"
+    "moment": "^2.16.0",
+    "requirejs": "^2.3.2",
+    "text": "github:requirejs/text"
   },
   "peerDependencies": {},
   "devDependencies": {
-    "aurelia-cli": "^0.21.0",
+    "aurelia-cli": "^0.23.0",
     "aurelia-testing": "^1.0.0-beta.2.0.0",
     "aurelia-tools": "^0.2.2",
     "autoprefixer": "^6.3.6",

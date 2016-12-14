@@ -4,7 +4,7 @@
   "platform": {
     "id": "aspnetcore",
     "displayName": "ASP.NET Core",
-    "output": "wwwroot\\scripts",
+    "output": "wwwroot/scripts",
     "index": "index.html",
     "baseUrl": "scripts"
   },
@@ -16,19 +16,19 @@
       "./typings/**/*.d.ts",
       "./custom_typings/**/*.d.ts"
     ],
-    "source": "src\\**\\*.ts"
+    "source": "src/**/*.ts"
   },
   "markupProcessor": {
     "id": "none",
     "displayName": "None",
     "fileExtension": ".html",
-    "source": "src\\**\\*.html"
+    "source": "src/**/*.html"
   },
   "cssProcessor": {
     "id": "postcss",
     "displayName": "Post CSS",
     "fileExtension": ".css",
-    "source": "src\\**\\*.css"
+    "source": "src/**/*.css"
   },
   "editor": {
     "id": "visualstudio",
@@ -37,15 +37,15 @@
   "unitTestRunner": {
     "id": "karma",
     "displayName": "Karma",
-    "source": "test\\unit\\**\\*.ts"
+    "source": "test/unit/**/*.ts"
   },
   "paths": {
     "root": "src",
-    "resources": "src\\resources",
-    "elements": "src\\resources\\elements",
-    "attributes": "src\\resources\\attributes",
-    "valueConverters": "src\\resources\\value-converters",
-    "bindingBehaviors": "src\\resources\\binding-behaviors"
+    "resources": "src/resources",
+    "elements": "src/resources/elements",
+    "attributes": "src/resources/attributes",
+    "valueConverters": "src/resources/value-converters",
+    "bindingBehaviors": "src/resources/binding-behaviors"
   },
   "testFramework": {
     "id": "jasmine",
@@ -56,9 +56,9 @@
       {
         "id": "aspnetcore",
         "displayName": "ASP.NET Core",
-        "output": "wwwroot\\scripts",
+        "output": "wwwroot/scripts",
         "useAbsolutePath": true,
-        "index": "wwwroot\\index.html",
+        "index": "wwwroot/index.html",
         "baseUrl": "scripts"
       }
     ],
@@ -93,7 +93,7 @@
         "name": "vendor-bundle.js",
         "prepend": [
           "node_modules/bluebird/js/browser/bluebird.core.js",
-          "wwwroot\\scripts/require.js"
+          "node_modules/requirejs/require.js"
         ],
         "dependencies": [
           "aurelia-binding",
@@ -117,10 +117,7 @@
           "aurelia-task-queue",
           "aurelia-templating",
           "aurelia-templating-binding",
-          {
-            "name": "text",
-            "path": "../wwwroot\\scripts/text"
-          },
+          "text",
           {
             "name": "aurelia-templating-resources",
             "path": "../node_modules/aurelia-templating-resources/dist/amd",
