@@ -5,7 +5,7 @@ export enum SideNavCommand {
     Toggle
 }
 
-export class ToggleSideNav {
+ export class ToggleSideNav {
 
   constructor(public command: SideNavCommand){}
 

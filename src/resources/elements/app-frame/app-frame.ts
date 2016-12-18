@@ -1,6 +1,7 @@
 import {inject, bindable} from "aurelia-framework";
 import {EventAggregator} from 'aurelia-event-aggregator';
 import {SideNavCommand, ToggleSideNav} from './messages';
+import {Notification} from 'services/NotificationService';
 
 @inject(Element, EventAggregator)
 export class AppFrame {
@@ -23,6 +24,11 @@ export class AppFrame {
                 this.sideNavOpen = false;
             }
 
+        });
+
+        ea.subscribe(Notification, (noti: Notification) => {
+
+            alert(noti.message);
         });
 
     }

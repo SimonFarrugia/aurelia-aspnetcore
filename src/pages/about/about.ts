@@ -1,4 +1,7 @@
+import {inject, bindable} from "aurelia-framework";
+import {INotificationService, NotificationType} from 'services/INotificationService'
 
+@inject(INotificationService)
 export class About {
     
     public actions = [
@@ -6,7 +9,7 @@ export class About {
         { title: "About2" }
     ];
 
-    constructor() {
-        
+    constructor(notificationService: INotificationService) {
+        notificationService.notify({ type: NotificationType.info, message: "hello"});
     }
 }

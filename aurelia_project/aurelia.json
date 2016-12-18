@@ -57,7 +57,7 @@
         "id": "aspnetcore",
         "displayName": "ASP.NET Core",
         "output": "wwwroot/scripts",
-        "useAbsolutePath": true,
+        "useAbsolutePath": false,
         "index": "wwwroot/index.html",
         "baseUrl": "scripts"
       }
