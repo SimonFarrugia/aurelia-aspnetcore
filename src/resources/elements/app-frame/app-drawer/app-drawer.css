@@ -2,13 +2,13 @@
 @import '../app-frame-breakpoints.css';
 
 :root {
-    --mobile-sidebarOpen-width: 80vw;
+    --mobile-sidebarOpen-width: 250px; /*80vw;*/
     --mobile-sidebarClosed-width: 0;
     --sidebarOpen-width: 250px;
     --sidebarClosed-width: 50px;
 }
 
-.side-nav-container {
+.app-drawer-container {
     /* Display & Box Model */
     overflow: hidden;
     height: 100%;
@@ -26,7 +26,7 @@
     }
 }
 
-[open] > .side-nav-container {
+[open] > .app-drawer-container {
     /* Display & Box Model */
     width: var(--mobile-sidebarOpen-width);
 
@@ -36,7 +36,7 @@
     }
 }
 
-.side-nav-container .side-nav-container-inner {
+.app-drawer-container .app-drawer-container-inner {
     /* Positioning */
     position: relative;
     float: right;
@@ -55,35 +55,11 @@
     }
 }
 
-.side-nav-container .side-nav__logo {
-    height: 50px;
-    text-align: center;
-    line-height: 50px;
-    white-space: nowrap;
+.app-drawer-container .app-drawer__bottom {
+    /* Positioning */
+    position: absolute;
+    bottom: 0;
 
-    & small {
-        display: none;
-
-        @media (--small-devices) {
-            display: block;
-        }
-    }
-
-    & big {
-        display: block;
-
-        @media (--small-devices) {
-            display: none;
-        }
-    }
-}
-
-[open] > .side-nav-container .side-nav__logo {
-    & small {
-        display: none;
-    }
-
-    & big {
-        display: block;
-    }
+    /* Display & Box Model */
+    width: 100%;
 }

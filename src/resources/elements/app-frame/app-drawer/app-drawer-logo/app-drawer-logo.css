@@ -1,0 +1,44 @@
+
+@import '../../app-frame-breakpoints.css';
+
+.app-drawer-logo-container {
+    /* Display & Box Model */
+    height: 50px;
+
+    /* Other */
+    text-align: center;
+    line-height: 50px;
+    white-space: nowrap;
+
+    & small {
+        /* Display & Box Model */
+        display: none;
+
+        @media (--small-devices) {
+            /* Display & Box Model */
+            display: block;
+        }
+    }
+
+    & big {
+        /* Display & Box Model */
+        display: block;
+
+        @media (--small-devices) {
+            /* Display & Box Model */
+            display: none;
+        }
+    }
+}
+
+[open] > .app-drawer-container .app-drawer-logo-container {
+    & small {
+        /* Display & Box Model */
+        display: none;
+    }
+
+    & big {
+        /* Display & Box Model */
+        display: block;
+    }
+}

@@ -1,0 +1,41 @@
+
+@import '../../app-frame-breakpoints.css';
+
+.app-drawer-nav-container > a {
+    /* Positioning */
+    position: relative;
+
+    /* Display & Box Model */
+    display: block;
+    height: 40px;
+
+    /* Other */
+    border-top: solid 1px #eee;
+}
+
+.app-drawer-nav-container > a:last-child {
+    /* Other */
+    border-bottom: solid 1px #eee;
+}
+
+.app-drawer-nav-container > a > div.app-drawer-nav__link-icon {
+    /* Display & Box Model */
+    width: 40px;
+    height: 40px;
+    padding: 5px;
+}
+
+.app-drawer-nav-container > a > div.app-drawer-nav__link-title {
+    /* Display & Box Model */
+    position: absolute;
+    top: 0;
+    left: 50px;
+    right: 0;
+
+    /* Display & Box Model */
+    padding: 5px;
+
+    /* Other */
+    line-height: 30px;
+}
+

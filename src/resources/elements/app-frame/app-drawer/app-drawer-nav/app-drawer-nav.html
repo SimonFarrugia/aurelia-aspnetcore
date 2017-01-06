@@ -1,0 +1,12 @@
+<template bindable="navList">
+    
+    <require from="./app-drawer-nav.css" as="scoped"></require>
+
+    <div class="app-drawer-nav-container">
+        <a repeat.for="nav of navList" route-href="route.bind: nav.route">
+            <div class="app-drawer-nav__link-icon"><img src.bind="nav.icon" alt="icon name"></div>
+            <div class="app-drawer-nav__link-title">${nav.title}</div>
+        </a>
+    </div>
+
+</template>

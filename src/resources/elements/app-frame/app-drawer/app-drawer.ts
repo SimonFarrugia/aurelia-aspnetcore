@@ -1,10 +1,14 @@
 import {inject, bindable} from "aurelia-framework";
 
 @inject(Element)
-export class AppSideNav {
+export class AppDrawer {
 
     @bindable public open: Boolean;
 
+    public navList: Array<Object> = [
+        { title: "About", icon: "", route: "about" },
+        { title: "Components", icon: "", route: "components" }
+    ]
 
     constructor(public el: Element) {
         

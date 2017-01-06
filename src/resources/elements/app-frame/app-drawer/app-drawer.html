@@ -1,0 +1,30 @@
+<template>
+
+    <require from="./app-drawer-logo/app-drawer-logo.html"></require>
+    <require from="./app-drawer-nav/app-drawer-nav.html"></require>
+    <require from="./app-drawer.css" as="scoped"></require>    
+
+    <div class="app-drawer-container">
+
+        <div class="app-drawer-container-inner">
+
+            <div class="app-drawer__top">
+
+                <app-drawer-logo class="app-drawer__logo"></app-drawer-logo>
+
+                <div class="back-button"></div>
+                
+                <app-drawer-nav class="app-drawer__nav" nav-list.bind="navList"></app-drawer-nav>
+
+            </div>
+            
+            <div class="app-drawer__bottom">
+                <div class="authentication"></div>
+                <div class="app-drawer-toggle" click.delegate="toggle()">toggle</div>
+            </div>
+
+        </div>
+
+    </div>
+
+</template>

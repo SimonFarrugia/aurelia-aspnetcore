@@ -48,21 +48,17 @@ define('environment',["require", "exports"], function (require, exports) {
     };
 });
 
-define('resources/elements/app-frame/messages',["require", "exports"], function (require, exports) {
+define('services/INotificationService',["require", "exports"], function (require, exports) {
     "use strict";
-    var SideNavCommand;
-    (function (SideNavCommand) {
-        SideNavCommand[SideNavCommand["Open"] = 0] = "Open";
-        SideNavCommand[SideNavCommand["Close"] = 1] = "Close";
-        SideNavCommand[SideNavCommand["Toggle"] = 2] = "Toggle";
-    })(SideNavCommand = exports.SideNavCommand || (exports.SideNavCommand = {}));
-    var ToggleSideNav = (function () {
-        function ToggleSideNav(command) {
-            this.command = command;
-        }
-        return ToggleSideNav;
-    }());
-    exports.ToggleSideNav = ToggleSideNav;
+    (function (NotificationType) {
+        NotificationType[NotificationType["info"] = 0] = "info";
+        NotificationType[NotificationType["success"] = 1] = "success";
+        NotificationType[NotificationType["warning"] = 2] = "warning";
+        NotificationType[NotificationType["error"] = 3] = "error";
+    })(exports.NotificationType || (exports.NotificationType = {}));
+    var NotificationType = exports.NotificationType;
+    exports.INotificationService = {};
+    exports.INotification = {};
 });
 
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -74,7 +70,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-define('services/NotificationService',["require", "exports", "aurelia-framework", "aurelia-event-aggregator"], function (require, exports, aurelia_framework_1, aurelia_event_aggregator_1) {
+define('services/NotificationService',["require", "exports", "aurelia-framework", 'aurelia-event-aggregator'], function (require, exports, aurelia_framework_1, aurelia_event_aggregator_1) {
     "use strict";
     var Notification = (function () {
         function Notification(type, message) {
@@ -91,29 +87,16 @@ define('services/NotificationService',["require", "exports", "aurelia-framework"
         NotificationService.prototype.notify = function (notification) {
             this.ea.publish(new Notification(notification.type, notification.message));
         };
+        NotificationService = __decorate([
+            aurelia_framework_1.inject(aurelia_event_aggregator_1.EventAggregator), 
+            __metadata('design:paramtypes', [aurelia_event_aggregator_1.EventAggregator])
+        ], NotificationService);
         return NotificationService;
     }());
-    NotificationService = __decorate([
-        aurelia_framework_1.inject(aurelia_event_aggregator_1.EventAggregator),
-        __metadata("design:paramtypes", [aurelia_event_aggregator_1.EventAggregator])
-    ], NotificationService);
     exports.NotificationService = NotificationService;
 });
 
-define('services/INotificationService',["require", "exports"], function (require, exports) {
-    "use strict";
-    var NotificationType;
-    (function (NotificationType) {
-        NotificationType[NotificationType["info"] = 0] = "info";
-        NotificationType[NotificationType["success"] = 1] = "success";
-        NotificationType[NotificationType["warning"] = 2] = "warning";
-        NotificationType[NotificationType["error"] = 3] = "error";
-    })(NotificationType = exports.NotificationType || (exports.NotificationType = {}));
-    exports.INotificationService = {};
-    exports.INotification = {};
-});
-
-define('main',["require", "exports", "./environment", "aurelia-dependency-injection", "./services/INotificationService", "./services/NotificationService"], function (require, exports, environment_1, aurelia_dependency_injection_1, INotificationService_1, NotificationService_1) {
+define('main',["require", "exports", './environment', 'aurelia-dependency-injection', './services/INotificationService', './services/NotificationService'], function (require, exports, environment_1, aurelia_dependency_injection_1, INotificationService_1, NotificationService_1) {
     "use strict";
     Promise.config({
         warnings: {
@@ -169,7 +152,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-define('pages/about/about',["require", "exports", "aurelia-framework", "services/INotificationService"], function (require, exports, aurelia_framework_1, INotificationService_1) {
+define('pages/about/about',["require", "exports", "aurelia-framework", 'services/INotificationService'], function (require, exports, aurelia_framework_1, INotificationService_1) {
     "use strict";
     var About = (function () {
         function About(notificationService) {
@@ -179,12 +162,12 @@ define('pages/about/about',["require", "exports", "aurelia-framework", "services
             ];
             notificationService.notify({ type: INotificationService_1.NotificationType.info, message: "hello" });
         }
+        About = __decorate([
+            aurelia_framework_1.inject(INotificationService_1.INotificationService), 
+            __metadata('design:paramtypes', [Object])
+        ], About);
         return About;
     }());
-    About = __decorate([
-        aurelia_framework_1.inject(INotificationService_1.INotificationService),
-        __metadata("design:paramtypes", [Object])
-    ], About);
     exports.About = About;
 });
 
@@ -221,6 +204,23 @@ define('pages/daterangepicker/daterangepicker',["require", "exports"], function 
     exports.Daterangepicker = Daterangepicker;
 });
 
+define('resources/elements/app-frame/messages',["require", "exports"], function (require, exports) {
+    "use strict";
+    (function (SideNavCommand) {
+        SideNavCommand[SideNavCommand["Open"] = 0] = "Open";
+        SideNavCommand[SideNavCommand["Close"] = 1] = "Close";
+        SideNavCommand[SideNavCommand["Toggle"] = 2] = "Toggle";
+    })(exports.SideNavCommand || (exports.SideNavCommand = {}));
+    var SideNavCommand = exports.SideNavCommand;
+    var ToggleSideNav = (function () {
+        function ToggleSideNav(command) {
+            this.command = command;
+        }
+        return ToggleSideNav;
+    }());
+    exports.ToggleSideNav = ToggleSideNav;
+});
+
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -230,7 +230,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-define('resources/elements/app-frame/app-frame',["require", "exports", "aurelia-framework", "aurelia-event-aggregator", "./messages", "services/NotificationService"], function (require, exports, aurelia_framework_1, aurelia_event_aggregator_1, messages_1, NotificationService_1) {
+define('resources/elements/app-frame/app-frame',["require", "exports", "aurelia-framework", 'aurelia-event-aggregator', './messages', 'services/NotificationService'], function (require, exports, aurelia_framework_1, aurelia_event_aggregator_1, messages_1, NotificationService_1) {
     "use strict";
     var AppFrame = (function () {
         function AppFrame(el, ea) {
@@ -255,16 +255,16 @@ define('resources/elements/app-frame/app-frame',["require", "exports", "aurelia-
         AppFrame.prototype.closeSideNav = function () {
             this.sideNavOpen = false;
         };
+        __decorate([
+            aurelia_framework_1.bindable, 
+            __metadata('design:type', Object)
+        ], AppFrame.prototype, "pageData", void 0);
+        AppFrame = __decorate([
+            aurelia_framework_1.inject(Element, aurelia_event_aggregator_1.EventAggregator), 
+            __metadata('design:paramtypes', [Element, aurelia_event_aggregator_1.EventAggregator])
+        ], AppFrame);
         return AppFrame;
     }());
-    __decorate([
-        aurelia_framework_1.bindable,
-        __metadata("design:type", Object)
-    ], AppFrame.prototype, "pageData", void 0);
-    AppFrame = __decorate([
-        aurelia_framework_1.inject(Element, aurelia_event_aggregator_1.EventAggregator),
-        __metadata("design:paramtypes", [Element, aurelia_event_aggregator_1.EventAggregator])
-    ], AppFrame);
     exports.AppFrame = AppFrame;
 });
 
@@ -277,21 +277,64 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-define('resources/elements/app-frame/app-header/app-header',["require", "exports", "aurelia-framework"], function (require, exports, aurelia_framework_1) {
+define('resources/elements/app-frame/app-drawer/app-drawer',["require", "exports", "aurelia-framework"], function (require, exports, aurelia_framework_1) {
+    "use strict";
+    var AppDrawer = (function () {
+        function AppDrawer(el) {
+            this.el = el;
+            this.navList = [
+                { title: "About", icon: "", route: "about" },
+                { title: "Components", icon: "", route: "components" }
+            ];
+        }
+        AppDrawer.prototype.openChanged = function (newValue, oldValue) {
+            if (newValue) {
+                this.el.setAttribute("open", "");
+            }
+            else {
+                this.el.removeAttribute("open");
+            }
+        };
+        AppDrawer.prototype.toggle = function () {
+            this.open = !this.open;
+        };
+        __decorate([
+            aurelia_framework_1.bindable, 
+            __metadata('design:type', Boolean)
+        ], AppDrawer.prototype, "open", void 0);
+        AppDrawer = __decorate([
+            aurelia_framework_1.inject(Element), 
+            __metadata('design:paramtypes', [Element])
+        ], AppDrawer);
+        return AppDrawer;
+    }());
+    exports.AppDrawer = AppDrawer;
+});
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+define('resources/elements/app-frame/app-header/app-header',["require", "exports", 'aurelia-framework'], function (require, exports, aurelia_framework_1) {
     "use strict";
     var AppHeader = (function () {
         function AppHeader() {
         }
+        __decorate([
+            aurelia_framework_1.bindable, 
+            __metadata('design:type', String)
+        ], AppHeader.prototype, "pageTitle", void 0);
+        __decorate([
+            aurelia_framework_1.bindable, 
+            __metadata('design:type', Array)
+        ], AppHeader.prototype, "pageActions", void 0);
         return AppHeader;
     }());
-    __decorate([
-        aurelia_framework_1.bindable,
-        __metadata("design:type", String)
-    ], AppHeader.prototype, "pageTitle", void 0);
-    __decorate([
-        aurelia_framework_1.bindable,
-        __metadata("design:type", Array)
-    ], AppHeader.prototype, "pageActions", void 0);
     exports.AppHeader = AppHeader;
 });
 
@@ -304,7 +347,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-define('resources/elements/app-frame/app-mobile-nav/app-mobile-nav',["require", "exports", "aurelia-framework", "aurelia-event-aggregator", "../messages"], function (require, exports, aurelia_framework_1, aurelia_event_aggregator_1, messages_1) {
+define('resources/elements/app-frame/app-mobile-nav/app-mobile-nav',["require", "exports", "aurelia-framework", 'aurelia-event-aggregator', '../messages'], function (require, exports, aurelia_framework_1, aurelia_event_aggregator_1, messages_1) {
     "use strict";
     var AppMobileNav = (function () {
         function AppMobileNav(ea) {
@@ -313,71 +356,36 @@ define('resources/elements/app-frame/app-mobile-nav/app-mobile-nav',["require", 
         AppMobileNav.prototype.toggleSideNav = function () {
             this.ea.publish(new messages_1.ToggleSideNav(messages_1.SideNavCommand.Toggle));
         };
+        AppMobileNav = __decorate([
+            aurelia_framework_1.inject(aurelia_event_aggregator_1.EventAggregator), 
+            __metadata('design:paramtypes', [aurelia_event_aggregator_1.EventAggregator])
+        ], AppMobileNav);
         return AppMobileNav;
     }());
-    AppMobileNav = __decorate([
-        aurelia_framework_1.inject(aurelia_event_aggregator_1.EventAggregator),
-        __metadata("design:paramtypes", [aurelia_event_aggregator_1.EventAggregator])
-    ], AppMobileNav);
     exports.AppMobileNav = AppMobileNav;
-});
-
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-define('resources/elements/app-frame/app-side-nav/app-side-nav',["require", "exports", "aurelia-framework"], function (require, exports, aurelia_framework_1) {
-    "use strict";
-    var AppSideNav = (function () {
-        function AppSideNav(el) {
-            this.el = el;
-        }
-        AppSideNav.prototype.openChanged = function (newValue, oldValue) {
-            if (newValue) {
-                this.el.setAttribute("open", "");
-            }
-            else {
-                this.el.removeAttribute("open");
-            }
-        };
-        AppSideNav.prototype.toggle = function () {
-            this.open = !this.open;
-        };
-        return AppSideNav;
-    }());
-    __decorate([
-        aurelia_framework_1.bindable,
-        __metadata("design:type", Boolean)
-    ], AppSideNav.prototype, "open", void 0);
-    AppSideNav = __decorate([
-        aurelia_framework_1.inject(Element),
-        __metadata("design:paramtypes", [Element])
-    ], AppSideNav);
-    exports.AppSideNav = AppSideNav;
 });
 
 define('text!app.html', ['module'], function(module) { module.exports = "<template>\r\n\r\n  <require from=\"./resources/elements/app-frame/app-frame\"></require>\r\n  <require from=\"./app.css\"></require>\r\n\r\n  <app-frame class=\"my-app-frame\" page-data.bind=\"currentPageData\">\r\n        \r\n        <router-view view-model.ref=\"pageViewModel\" layout-view=\"./layouts/page-layout/page-layout.html\"></router-view>\r\n        \r\n  </app-frame>\r\n\r\n</template>\r\n"; });
 define('text!app.css', ['module'], function(module) { module.exports = "\r\nhtml,\r\nbody {\r\n    width: 100%;\r\n    height: 100%;\r\n    padding: 0;\r\n    margin: 0;\r\n}\r\n\r\n.my-app-frame {\r\n    width: 100%;\r\n    height: 100%;\r\n}\r\n"; });
 define('text!layouts/document/document.html', ['module'], function(module) { module.exports = "<template>\r\n    \r\n    <main>\r\n        <slot></slot>\r\n    </main>\r\n\r\n</template>"; });
 define('text!layouts/search-layout/search-layout.css', ['module'], function(module) { module.exports = ""; });
-define('text!layouts/page-layout/page-layout.html', ['module'], function(module) { module.exports = "<template>\r\n\r\n    <style>\r\n        .page-layout {\r\n            padding:10px;\r\n        }\r\n    </style>\r\n\r\n    <div class=\"page-layout\">\r\n        <slot></slot>\r\n    </div>\r\n\r\n</template>"; });
 define('text!pages/about/about.css', ['module'], function(module) { module.exports = ""; });
+define('text!layouts/page-layout/page-layout.html', ['module'], function(module) { module.exports = "<template>\r\n\r\n    <style>\r\n        .page-layout {\r\n            padding:10px;\r\n        }\r\n    </style>\r\n\r\n    <div class=\"page-layout\">\r\n        <slot></slot>\r\n    </div>\r\n\r\n</template>"; });
 define('text!layouts/search-layout/search-layout.html', ['module'], function(module) { module.exports = ""; });
-define('text!resources/elements/app-frame/app-frame-breakpoints.css', ['module'], function(module) { module.exports = ""; });
-define('text!pages/components/components.html', ['module'], function(module) { module.exports = "\r\n<template>\r\n     ullala\r\n    <aside>\r\n        \r\n    </aside>\r\n\r\n    <router-view></router-view>\r\n\r\n</template>"; });
+define('text!resources/elements/app-frame/app-frame-breakpoints.css', ['module'], function(module) { module.exports = "\r\n"; });
 define('text!pages/about/about.html', ['module'], function(module) { module.exports = "<template>\r\n    <p>juhuuuuuu</p>\r\n</template>"; });
+define('text!pages/components/components.html', ['module'], function(module) { module.exports = "\r\n<template>\r\n     ullala\r\n    <aside>\r\n        \r\n    </aside>\r\n\r\n    <router-view></router-view>\r\n\r\n</template>"; });
 define('text!pages/daterangepicker/daterangepicker.html', ['module'], function(module) { module.exports = "\r\n<template>\r\n    <!--<require from=\"resources/elements/bs-daterangepicker\"></require>-->\r\n\r\n    <h1>Daterangepicker Page</h1>\r\n    <!--<bs-daterangepicker value=\"hello\"></bs-daterangepicker>-->\r\n\r\n</template>"; });
-define('text!resources/elements/app-frame/app-frame.html', ['module'], function(module) { module.exports = "<template>\r\n\r\n    <require from=\"./app-frame.css\" as=\"scoped\"></require>\r\n    <require from=\"./app-header/app-header\"></require>\r\n    <require from=\"./app-side-nav/app-side-nav\"></require>\r\n    <require from=\"./app-mobile-nav/app-mobile-nav\"></require>\r\n\r\n    <div class=\"app-frame-container\">\r\n        \r\n        <app-side-nav class=\"app-frame__side-nav\" open.two-way=\"sideNavOpen\"></app-side-nav>\r\n         \r\n        <div class=\"app-frame__body\">\r\n            \r\n            <app-header class=\"app-frame__body__header\" page-title.bind=\"pageData.title\" page-actions.bind=\"pageData.actions\"></app-header>\r\n            \r\n            <div class=\"app-frame__body__page\">\r\n                <slot></slot>\r\n            </div>\r\n\r\n            <app-mobile-nav class=\"app-frame__body__mobile-nav\"></app-mobile-nav>\r\n\r\n            <div class=\"app-frame__body__overlay\" click.trigger=\"closeSideNav()\"></div>\r\n\r\n        </div>\r\n    \r\n    </div>\r\n\r\n</template>"; });
-define('text!resources/elements/app-frame/app-header/app-header.html', ['module'], function(module) { module.exports = "<template>\r\n\r\n    <require from=\"./app-header.css\" as=\"scoped\"></require>\r\n\r\n    <header class=\"app-header-container\">\r\n\r\n        <div class=\"app-header__page-title\">${pageTitle}</div>\r\n\r\n        <ul if.bind=\"pageActions != null\">\r\n\r\n            <li repeat.for=\"action of pageActions\">\r\n                ${action.title}\r\n            </li>\r\n\r\n        </ul>\r\n\r\n    </header>\r\n\r\n</template>"; });
+define('text!resources/elements/app-frame/app-frame.html', ['module'], function(module) { module.exports = "<template>\r\n\r\n    <require from=\"./app-frame.css\" as=\"scoped\"></require>\r\n    <require from=\"./app-header/app-header\"></require>\r\n    <require from=\"./app-drawer/app-drawer\"></require>\r\n    <require from=\"./app-mobile-nav/app-mobile-nav\"></require>\r\n\r\n    <div class=\"app-frame-container\">\r\n        \r\n        <app-drawer class=\"app-frame__side-nav\" open.two-way=\"sideNavOpen\"></app-drawer>\r\n         \r\n        <div class=\"app-frame__body\">\r\n            \r\n            <app-header class=\"app-frame__body__header\" page-title.bind=\"pageData.title\" page-actions.bind=\"pageData.actions\"></app-header>\r\n            \r\n            <div class=\"app-frame__body__page\">\r\n                <slot></slot>\r\n            </div>\r\n\r\n            <app-mobile-nav class=\"app-frame__body__mobile-nav\"></app-mobile-nav>\r\n\r\n            <div class=\"app-frame__body__overlay\" click.trigger=\"closeSideNav()\"></div>\r\n\r\n        </div>\r\n    \r\n    </div>\r\n\r\n</template>"; });
 define('text!resources/elements/app-frame/app-frame.css', ['module'], function(module) { module.exports = "\r\n.app-frame-container {\r\n    position: relative;\r\n    width: 100%;\r\n    height: 100%;\r\n}\r\n.app-frame__side-nav {\r\n    z-index: 1;\r\n    position: absolute;\r\n    top: 0;\r\n    bottom: 0;\r\n    left: 0;\r\n}\r\n.app-frame__body {\r\n    position: relative;\r\n    margin-left: 0;\r\n    height: 100%;\r\n\r\n    /*  */\r\n    overflow: hidden\r\n}\r\n@media (min-width: 544px) {\r\n    .app-frame__body {\r\n        margin-left: 50px;\r\n    }\r\n    }\r\n.app-frame__side-nav[open] + .app-frame__body {\r\n}\r\n@media(min-width: 992px) {\r\n    .app-frame__side-nav[open] + .app-frame__body {\r\n        margin-left: 250px;\r\n    }\r\n    }\r\n.app-frame__body__overlay {\r\n    \r\n    position:absolute;\r\n    top:0px;\r\n    left:0px;\r\n    bottom:0px;\r\n    right:0px;\r\n    display: none;\r\n}\r\n.app-frame__side-nav[open] + .app-frame__body > .app-frame__body__overlay {\r\n\r\n    display: block\r\n}\r\n@media(min-width: 992px) {\r\n    .app-frame__side-nav[open] + .app-frame__body > .app-frame__body__overlay {\r\n        display: none;\r\n    }\r\n    }\r\n.app-frame__body__header {\r\n    \r\n    position: absolute;\r\n    top:0px;\r\n    width:100%;\r\n}\r\n.app-frame__body__page {\r\n\r\n    position: absolute;\r\n    top: 50px;\r\n    bottom: 50px;\r\n    width: 100%\r\n}\r\n@media(min-width: 544px) {\r\n    .app-frame__body__page {\r\n        bottom: 0px;\r\n    }\r\n    }\r\n.app-frame__body__mobile-nav {\r\n\r\n    position: absolute;\r\n    height: 50px;\r\n    bottom: 0px;\r\n    width:100%\r\n}\r\n@media(min-width: 544px) {\r\n    .app-frame__body__mobile-nav {\r\n        bottom: -50px;\r\n    }\r\n    }\r\n.app-frame__body {\r\n    background-color: #FAFAFA;\r\n    -webkit-transition: margin-left 0.2s;\r\n    transition: margin-left 0.2s;\r\n}\r\n.app-frame__body__mobile-nav {\r\n    background-color: #fff;\r\n    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14),0 3px 1px -2px rgba(0, 0, 0, .2),0 1px 5px 0 rgba(0, 0, 0, .12);\r\n    -webkit-transition: bottom 0.2s;;\r\n    transition: bottom 0.2s;\r\n}"; });
-define('text!resources/elements/app-frame/app-mobile-nav/app-mobile-nav.html', ['module'], function(module) { module.exports = "<template>\r\n\r\n    <div class=\"mobile-nav\">\r\n        \r\n        <div class=\"mobile-nav__left\">\r\n            <div class=\"btn-icon btn-icon-side-nav-toggle\" click.trigger=\"toggleSideNav()\">ooo</div>\r\n            <a class=\"btn-icon btn-icon-search\"></div>\r\n            <a class=\"btn-icon btn-icon-back\"></div>\r\n        </div>\r\n\r\n        <div class=\"mobile-nav__right\">\r\n            <div class=\"notifications\"></div>\r\n        </div>\r\n\r\n    </div>\r\n\r\n</template>"; });
+define('text!resources/elements/app-frame/app-drawer/app-drawer.html', ['module'], function(module) { module.exports = "<template>\r\n\r\n    <require from=\"./app-drawer-logo/app-drawer-logo.html\"></require>\r\n    <require from=\"./app-drawer-nav/app-drawer-nav.html\"></require>\r\n    <require from=\"./app-drawer.css\" as=\"scoped\"></require>    \r\n\r\n    <div class=\"app-drawer-container\">\r\n\r\n        <div class=\"app-drawer-container-inner\">\r\n\r\n            <div class=\"app-drawer__top\">\r\n\r\n                <app-drawer-logo class=\"app-drawer__logo\"></app-drawer-logo>\r\n\r\n                <div class=\"back-button\"></div>\r\n                \r\n                <app-drawer-nav class=\"app-drawer__nav\" nav-list.bind=\"navList\"></app-drawer-nav>\r\n\r\n            </div>\r\n            \r\n            <div class=\"app-drawer__bottom\">\r\n                <div class=\"authentication\"></div>\r\n                <div class=\"app-drawer-toggle\" click.delegate=\"toggle()\">toggle</div>\r\n            </div>\r\n\r\n        </div>\r\n\r\n    </div>\r\n\r\n</template>"; });
+define('text!resources/elements/app-frame/app-header/app-header.html', ['module'], function(module) { module.exports = "<template>\r\n\r\n    <require from=\"./app-header.css\" as=\"scoped\"></require>\r\n\r\n    <header class=\"app-header-container\">\r\n\r\n        <div class=\"app-header__page-title\">${pageTitle}</div>\r\n\r\n        <ul if.bind=\"pageActions != null\">\r\n\r\n            <li repeat.for=\"action of pageActions\">\r\n                ${action.title}\r\n            </li>\r\n\r\n        </ul>\r\n\r\n    </header>\r\n\r\n</template>"; });
+define('text!resources/elements/app-frame/app-drawer/app-drawer.css', ['module'], function(module) { module.exports = "\r\n:root { /*80vw;*/\r\n}\r\n.app-drawer-container {\r\n    /* Display & Box Model */\r\n    overflow: hidden;\r\n    height: 100%;\r\n    width: 0;\r\n\r\n    /* Other */\r\n    will-change: width;\r\n    background-color: #fff;\r\n    box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12), 0 2px 4px -1px rgba(0, 0, 0, .2);\r\n    -webkit-transition: width 0.2s;\r\n    transition: width 0.2s\r\n}\r\n@media (min-width: 544px) {\r\n .app-drawer-container { /* Display & Box Model */\r\n  width: 50px\r\n }\r\n    }\r\n[open] > .app-drawer-container {\r\n    /* Display & Box Model */\r\n    width: 250px\r\n}\r\n@media (min-width: 544px) {\r\n [open] > .app-drawer-container { /* Display & Box Model */\r\n  width: 250px\r\n }\r\n    }\r\n.app-drawer-container .app-drawer-container-inner {\r\n    /* Positioning */\r\n    position: relative;\r\n    float: right;\r\n\r\n    /* Display & Box Model */\r\n    overflow: hidden;\r\n    height: 100%;\r\n    width: 250px\r\n}\r\n@media (min-width: 544px) {\r\n .app-drawer-container .app-drawer-container-inner { /* Positioning */\r\n  float: left; /* Display & Box Model */\r\n  width: 100%\r\n }\r\n    }\r\n.app-drawer-container .app-drawer__bottom {\r\n    /* Positioning */\r\n    position: absolute;\r\n    bottom: 0;\r\n\r\n    /* Display & Box Model */\r\n    width: 100%;\r\n}\r\n"; });
 define('text!resources/elements/app-frame/app-header/app-header.css', ['module'], function(module) { module.exports = "\r\n\r\n.app-header-container {\r\n     height: 50px;\r\n}\r\n\r\n.app-header__page-title {\r\n    line-height: 30px;\r\n    padding:10px;\r\n\r\n    font-family: Arial, Helvetica, sans-serif;\r\n    font-size: 20px;\r\n    color:#666; \r\n}\r\n\r\n.app-header__page-actions {\r\n\r\n\r\n}\r\n\r\n.app-header-container {\r\n    background-color: #fff;\r\n    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14),0 3px 1px -2px rgba(0, 0, 0, .2),0 1px 5px 0 rgba(0, 0, 0, .12);\r\n}"; });
 define('text!resources/elements/app-frame/app-mobile-nav/app-mobile-nav.css', ['module'], function(module) { module.exports = ""; });
-define('text!resources/elements/app-frame/app-side-nav/app-side-nav.html', ['module'], function(module) { module.exports = "<template>\r\n\r\n    <require from=\"./app-side-nav.css\" as=\"scoped\"></require>\r\n\r\n    <div class=\"side-nav-container\">\r\n\r\n        <div class=\"side-nav-container-inner\">\r\n\r\n            <div class=\"side-nav__top\">\r\n\r\n                <div class=\"side-nav__logo\">\r\n                    <small>m</small>\r\n                    <big>mock-up</big>\r\n                </div>\r\n\r\n                <div class=\"back-button\"></div>\r\n\r\n                <div class=\"nav-links\">\r\n                    <a route-href=\"route: components\">Components link</a>\r\n                    <a route-href=\"route: about\">About link</a>\r\n                </div>\r\n\r\n            </div>\r\n            \r\n            <div class=\"side-nav__bottom\">\r\n                <div class=\"authentication\"></div>\r\n                <div class=\"side-nav-toggle\" click.delegate=\"toggle()\">toggle</div>\r\n            </div>\r\n\r\n        </div>\r\n\r\n    </div>\r\n\r\n</template>"; });
-define('text!resources/elements/app-frame/app-side-nav/app-side-nav.css', ['module'], function(module) { module.exports = "\r\n.side-nav-container {\r\n    /* Display & Box Model */\r\n    overflow: hidden;\r\n    height: 100%;\r\n    width: 0;\r\n\r\n    /* Other */\r\n    will-change: width;\r\n    background-color: #fff;\r\n    box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12), 0 2px 4px -1px rgba(0, 0, 0, .2);\r\n    -webkit-transition: width 0.2s;\r\n    transition: width 0.2s\r\n}\r\n@media (min-width: 544px) {\r\n    .side-nav-container {\r\n        /* Display & Box Model */\r\n        width: 50px\r\n    }\r\n    }\r\n[open] > .side-nav-container {\r\n    /* Display & Box Model */\r\n    width: 80vw\r\n}\r\n@media (min-width: 544px) {\r\n    [open] > .side-nav-container {\r\n        /* Display & Box Model */\r\n        width: 250px\r\n    }\r\n    }\r\n.side-nav-container .side-nav-container-inner {\r\n    /* Positioning */\r\n    position: relative;\r\n    float: right;\r\n\r\n    /* Display & Box Model */\r\n    overflow: hidden;\r\n    height: 100%;\r\n    width: 80vw\r\n}\r\n@media (min-width: 544px) {\r\n    .side-nav-container .side-nav-container-inner {\r\n        /* Positioning */\r\n        float: left;\r\n        /* Display & Box Model */\r\n        width: 100%\r\n    }\r\n    }\r\n.side-nav-container .side-nav__logo {\r\n    height: 50px;\r\n    text-align: center;\r\n    line-height: 50px;\r\n    white-space: nowrap\r\n}\r\n.side-nav-container .side-nav__logo small {\r\n    display: none\r\n}\r\n@media (min-width: 544px) {\r\n    .side-nav-container .side-nav__logo small {\r\n        display: block\r\n    }\r\n}\r\n.side-nav-container .side-nav__logo big {\r\n    display: block\r\n}\r\n@media (min-width: 544px) {\r\n    .side-nav-container .side-nav__logo big {\r\n        display: none\r\n    }\r\n}\r\n[open] > .side-nav-container .side-nav__logo {\r\n}\r\n[open] > .side-nav-container .side-nav__logo small {\r\n    display: none\r\n}\r\n[open] > .side-nav-container .side-nav__logo big {\r\n    display: block\r\n}\r\n"; });
+define('text!resources/elements/app-frame/app-mobile-nav/app-mobile-nav.html', ['module'], function(module) { module.exports = "<template>\r\n\r\n    <div class=\"mobile-nav\">\r\n        \r\n        <div class=\"mobile-nav__left\">\r\n            <div class=\"btn-icon btn-icon-app-drawer-toggle\" click.trigger=\"toggleSideNav()\">ooo</div>\r\n            <a class=\"btn-icon btn-icon-search\"></div>\r\n            <a class=\"btn-icon btn-icon-back\"></div>\r\n        </div>\r\n\r\n        <div class=\"mobile-nav__right\">\r\n            <div class=\"notifications\"></div>\r\n        </div>\r\n\r\n    </div>\r\n\r\n</template>"; });
+define('text!resources/elements/app-frame/app-drawer/app-drawer-logo/app-drawer-logo.html', ['module'], function(module) { module.exports = "<template>\r\n\r\n    <require from=\"./app-drawer-logo.css\" as=\"scoped\"></require>\r\n\r\n    <div class=\"app-drawer-logo-container\">\r\n        <small>m</small>\r\n        <big>mock-up</big>\r\n    </div>\r\n\r\n</template>"; });
+define('text!resources/elements/app-frame/app-drawer/app-drawer-logo/app-drawer-logo.css', ['module'], function(module) { module.exports = "\r\n.app-drawer-logo-container {\r\n    /* Display & Box Model */\r\n    height: 50px;\r\n\r\n    /* Other */\r\n    text-align: center;\r\n    line-height: 50px;\r\n    white-space: nowrap\r\n}\r\n.app-drawer-logo-container small {\r\n    /* Display & Box Model */\r\n    display: none\r\n}\r\n@media (min-width: 544px) {\r\n    .app-drawer-logo-container small {\r\n        /* Display & Box Model */\r\n        display: block\r\n    }\r\n}\r\n.app-drawer-logo-container big {\r\n    /* Display & Box Model */\r\n    display: block\r\n}\r\n@media (min-width: 544px) {\r\n    .app-drawer-logo-container big {\r\n        /* Display & Box Model */\r\n        display: none\r\n    }\r\n}\r\n[open] > .app-drawer-container .app-drawer-logo-container {\r\n}\r\n[open] > .app-drawer-container .app-drawer-logo-container small {\r\n    /* Display & Box Model */\r\n    display: none\r\n}\r\n[open] > .app-drawer-container .app-drawer-logo-container big {\r\n    /* Display & Box Model */\r\n    display: block\r\n}"; });
+define('text!resources/elements/app-frame/app-drawer/app-drawer-nav/app-drawer-nav.html', ['module'], function(module) { module.exports = "<template bindable=\"navList\">\r\n    \r\n    <require from=\"./app-drawer-nav.css\" as=\"scoped\"></require>\r\n\r\n    <div class=\"app-drawer-nav-container\">\r\n        <a repeat.for=\"nav of navList\" route-href=\"route.bind: nav.route\">\r\n            <div class=\"app-drawer-nav__link-icon\"><img src.bind=\"nav.icon\" alt=\"icon name\"></div>\r\n            <div class=\"app-drawer-nav__link-title\">${nav.title}</div>\r\n        </a>\r\n    </div>\r\n\r\n</template>"; });
+define('text!resources/elements/app-frame/app-drawer/app-drawer-nav/app-drawer-nav.css', ['module'], function(module) { module.exports = "\r\n.app-drawer-nav-container > a {\r\n    /* Positioning */\r\n    position: relative;\r\n\r\n    /* Display & Box Model */\r\n    display: block;\r\n    height: 40px;\r\n\r\n    /* Other */\r\n    border-top: solid 1px #eee;\r\n}\r\n.app-drawer-nav-container > a:last-child {\r\n    /* Other */\r\n    border-bottom: solid 1px #eee;\r\n}\r\n.app-drawer-nav-container > a > div.app-drawer-nav__link-icon {\r\n    /* Display & Box Model */\r\n    width: 40px;\r\n    height: 40px;\r\n    padding: 5px;\r\n}\r\n.app-drawer-nav-container > a > div.app-drawer-nav__link-title {\r\n    /* Display & Box Model */\r\n    position: absolute;\r\n    top: 0;\r\n    left: 50px;\r\n    right: 0;\r\n\r\n    /* Display & Box Model */\r\n    padding: 5px;\r\n\r\n    /* Other */\r\n    line-height: 30px;\r\n}\r\n\r\n"; });
 //# sourceMappingURL=app-bundle.js.map
