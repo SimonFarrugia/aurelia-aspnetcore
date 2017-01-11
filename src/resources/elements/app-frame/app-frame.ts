@@ -1,6 +1,6 @@
 import {inject, bindable} from "aurelia-framework";
 import {EventAggregator} from 'aurelia-event-aggregator';
-import {SideNavCommand, ToggleSideNav} from './messages';
+import {AppDrawerCommandType, AppDrawerCommand} from './messages';
 import {Notification} from 'services/NotificationService';
 
 @inject(Element, EventAggregator)
@@ -8,20 +8,20 @@ export class AppFrame {
 
     @bindable public pageData: Object;
     
-    public sideNavOpen: Boolean
+    public appDrawerOpen: Boolean
 
     constructor(public el: Element, public ea: EventAggregator) {
         
-        ea.subscribe(ToggleSideNav, msg => {
+        ea.subscribe(AppDrawerCommand, msg => {
             
-            if(msg.command == SideNavCommand.Toggle){
-                this.sideNavOpen = !this.sideNavOpen;
+            if(msg.command == AppDrawerCommandType.Toggle){
+                this.appDrawerOpen = !this.appDrawerOpen;
             }
-            else if(msg.command == SideNavCommand.Open) {
-                this.sideNavOpen = true;
+            else if(msg.command == AppDrawerCommandType.Open) {
+                this.appDrawerOpen = true;
             }
             else{
-                this.sideNavOpen = false;
+                this.appDrawerOpen = false;
             }
 
         });
@@ -35,7 +35,7 @@ export class AppFrame {
 
 
     closeSideNav(){
-        this.sideNavOpen = false;
+        this.appDrawerOpen = false;
     }
     
 }

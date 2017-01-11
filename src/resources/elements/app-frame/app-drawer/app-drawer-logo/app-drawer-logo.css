@@ -9,6 +9,9 @@
     text-align: center;
     line-height: 50px;
     white-space: nowrap;
+    font-family: 'Arial Rounded MT';
+    font-size: 25px;
+    color: #e1e1e1;
 
     & small {
         /* Display & Box Model */

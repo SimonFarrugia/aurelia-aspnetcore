@@ -18,7 +18,7 @@ export class InlineSvg {
 
     svgChanged(svg) {
         if (svg) {
-            this.http.fetch(`${svg}`)
+            this.http.fetch(svg)
                 .then(response => response.text())
                 .then(response => this.el.parentElement.innerHTML = response);
         }

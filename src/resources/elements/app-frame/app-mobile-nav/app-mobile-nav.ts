@@ -1,6 +1,6 @@
 import {inject} from "aurelia-framework";
 import {EventAggregator} from 'aurelia-event-aggregator';
-import {SideNavCommand, ToggleSideNav} from '../messages';
+import {AppDrawerCommandType, AppDrawerCommand} from '../messages';
 
 @inject(EventAggregator)
 export class AppMobileNav{
@@ -8,6 +8,6 @@ export class AppMobileNav{
     constructor(public ea: EventAggregator) {}
 
     toggleSideNav() {
-        this.ea.publish(new ToggleSideNav(SideNavCommand.Toggle));
+        this.ea.publish(new AppDrawerCommand(AppDrawerCommandType.Toggle));
     }
 }
