@@ -11,6 +11,7 @@
 
     /* Other */
     border-top: solid 1px #eee;
+    color: #ccc;
 }
 
 .app-drawer-nav-container > a:last-child {
@@ -20,13 +21,18 @@
 
 .app-drawer-nav-container > a > div.app-drawer-nav__link-icon {
     /* Display & Box Model */
-    width: 20px;
-    height: 20px;
-    padding: 10px 15px;
+    width: 16px;
+    height: 16px;
+    padding: 12px 17px;
+}
+
+.app-drawer-nav-container > a > div.app-drawer-nav__link-icon > svg {
+    /* Other */
+    fill: currentColor;
 }
 
 .app-drawer-nav-container > a > div.app-drawer-nav__link-title {
-    /* Display & Box Model */
+    /* Positioning */
     position: absolute;
     top: 0;
     left: 50px;
@@ -37,5 +43,13 @@
 
     /* Other */
     line-height: 30px;
+    font-family: sans-serif;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+[open] > .app-drawer-container .app-drawer-nav-container > a > div.app-drawer-nav__link-title {
+    /* Other */
+    opacity: 1;
 }
 

@@ -2,7 +2,7 @@
 @import '../app-frame-breakpoints.css';
 
 :root {
-    --mobile-sidebarOpen-width: 250px; /*80vw;*/
+    --mobile-sidebarOpen-width: 80vw;
     --mobile-sidebarClosed-width: 0;
     --sidebarOpen-width: 250px;
     --sidebarClosed-width: 50px;
@@ -13,12 +13,13 @@
     overflow: hidden;
     height: 100%;
     width: var(--mobile-sidebarClosed-width);
+    min-width: var(--mobile-sidebarClosed-width);
 
     /* Other */
     will-change: width;
     background-color: #fff;
     box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
-    transition: width 0.2s;
+    transition: width 0.2s, min-width 0.2s;
 
     @media (--small-devices) {
         /* Display & Box Model */
@@ -29,6 +30,7 @@
 [open] > .app-drawer-container {
     /* Display & Box Model */
     width: var(--mobile-sidebarOpen-width);
+    min-width: var(--sidebarOpen-width);
 
     @media (--small-devices) {
         /* Display & Box Model */
@@ -44,14 +46,16 @@
     /* Display & Box Model */
     overflow: hidden;
     height: 100%;
-    width: var(--mobile-sidebarOpen-width);
+    min-width: var(--sidebarOpen-width);
+    width: 100%;
 
     @media (--small-devices) {
         /* Positioning */
         float: left;
 
         /* Display & Box Model */
-        width: 100%;
+        /*width: 100%;*/
+        min-width: auto;
     }
 }
 
