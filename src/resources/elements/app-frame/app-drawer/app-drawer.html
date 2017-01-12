@@ -2,6 +2,7 @@
 
     <require from="./app-drawer-logo/app-drawer-logo.html"></require>
     <require from="./app-drawer-nav/app-drawer-nav.html"></require>
+    <require from="./app-drawer-toggle/app-drawer-toggle"></require>
     <require from="./app-drawer.css" as="scoped"></require>    
 
     <div class="app-drawer-container">
@@ -20,6 +21,7 @@
             
             <div class="app-drawer__bottom">
                 <div class="authentication"></div>
+                <app-drawer-toggle open.one-way="open" click.delegate="toggle()"></app-drawer-toggle>
                 <div class="app-drawer-toggle" click.delegate="toggle()">toggle</div>
             </div>
 
