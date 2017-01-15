@@ -234,4 +234,4 @@ _Pvt_Extensions
 .fake/
 
 # Compiled scripts
-wwwroot/scripts
+wwwroot/scripts/

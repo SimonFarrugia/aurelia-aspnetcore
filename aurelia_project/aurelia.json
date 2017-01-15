@@ -156,6 +156,11 @@
             "resources": [
               "daterangepicker-bs3.css"
             ]
+          },
+          {
+            "name": "svg.js",
+            "path": "../node_modules/svg.js/dist",
+            "main": "svg.min"
           }
         ]
       }
