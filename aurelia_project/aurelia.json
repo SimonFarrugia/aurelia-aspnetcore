@@ -160,7 +160,7 @@
           {
             "name": "svg.js",
             "path": "../node_modules/svg.js/dist",
-            "main": "svg.min"
+            "main": "svg"
           }
         ]
       }

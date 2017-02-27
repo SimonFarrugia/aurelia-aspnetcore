@@ -10,6 +10,11 @@ export class AppFrame {
     
     public appDrawerOpen: Boolean
 
+    public navList: Array<Object> = [
+        { title: "About", icon: "/images/drawer/menu-icons/person.svg", route: "about" },
+        { title: "Components", icon: "/images/drawer/menu-icons/star.svg", route: "components" }
+    ]
+
     constructor(public el: Element, public ea: EventAggregator) {
         
         ea.subscribe(AppDrawerCommand, msg => {
@@ -36,6 +41,12 @@ export class AppFrame {
 
     closeSideNav(){
         this.appDrawerOpen = false;
+    }
+
+    
+    toggle() {
+
+        this.appDrawerOpen = !this.appDrawerOpen;
     }
     
 }

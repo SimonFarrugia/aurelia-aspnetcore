@@ -1,0 +1,16 @@
+<template bindable="type">
+
+    <require from="./app-alert.css" as="scoped"></require>
+
+    <a class="app-alert-container app-alert--${type}" route-href.one-time="">
+
+        <!--<img if.bind="icon != null" src.bind="icon">-->
+        <div clsss="app-alert__icon" if.one-time="icon != null" css.bind="background-image: url('${icon}');"></div>
+        <p class="app-alert__message">
+            <slot></slot>
+        </p>
+        <span class="app-alert__btn-clear" >X</span>
+
+    </a>
+
+</template>

@@ -1,6 +1,7 @@
-import {inject, bindable} from "aurelia-framework";
+import {inject, bindable, noView} from "aurelia-framework";
 import * as SVG from "svg.js";
 
+@noView
 @inject(Element)
 export class AppDrawerToggle {
 
@@ -12,7 +13,7 @@ export class AppDrawerToggle {
         
         //let svg:svgjs.Library = (SVG.default || SVG) as svgjs.Library;
 
-        let svgElement: svgjs.Element = SVG.select("svg path", this.element as HTMLElement)
+        let svgElement: SVG.Element = SVG.select("svg path", this.element as HTMLElement);
 
         if(newValue) {
             svgElement.attr({ d: 'M4 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z' });

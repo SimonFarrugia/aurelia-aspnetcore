@@ -7,15 +7,9 @@ export class AppDrawer {
 
     @bindable public open: Boolean;
 
-    public navList: Array<Object> = [
-        { title: "About", icon: "/images/drawer/menu-icons/person.svg", route: "about" },
-        { title: "Components", icon: "/images/drawer/menu-icons/star.svg", route: "components" }
-    ]
-
     constructor(public el: Element, public ea: EventAggregator) {
         
     }
-
     
     openChanged(newValue: boolean, oldValue: Boolean) {
 
@@ -37,9 +31,4 @@ export class AppDrawer {
         
     }
     
-
-    toggle() {
-
-        this.open = !this.open;
-    }
 }

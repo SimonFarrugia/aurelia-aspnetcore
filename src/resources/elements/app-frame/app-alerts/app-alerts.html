@@ -1,0 +1,13 @@
+<template>
+
+    <require from="./app-alert/app-alert.html"></require>
+
+    <div class="app-alerts-container" click.delegate="action($event)">
+
+        <app-alert repeat.for="alert of alerts" alert-id.one-time="id" alert-type.one-time="alert.type" alert-icon.one-time="alert.icon">
+            ${alert.message}
+        </app-alert>
+
+    </div>
+
+</template>

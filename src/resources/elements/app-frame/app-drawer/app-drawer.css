@@ -58,31 +58,3 @@
         min-width: auto;
     }
 }
-
-.app-drawer-container .app-drawer__bottom {
-    /* Positioning */
-    position: absolute;
-    bottom: 0;
-
-    /* Display & Box Model */
-    width: 100%;
-}
-
-.app-drawer-toggle {
-    /* Positioning */
-    position: relative;
-    float: right;
-
-    /* Display & Box Model */
-    display: block;
-    width: 30px;
-    height: 30px;
-    padding: 10px;
-
-    /* Other */
-    color: #ccc;
-}
-
-.app-drawer-toggle svg {
-    fill: currentColor;
-}

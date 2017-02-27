@@ -1,5 +1,5 @@
 
-@import '../../app-frame-breakpoints.css';
+@import '../app-frame-breakpoints.css';
 
 .app-drawer-nav-container > a {
     /* Positioning */

@@ -24,83 +24,102 @@
     overflow: hidden;
 
     @media (--small-devices) {
-
-        margin-left:50px;
+        margin-left: 50px;
     }
 }
-
 
 .app-frame__app-drawer[open] + .app-frame__body {
-
-    @media(--large-devices) {
-        margin-left:250px;
+    @media (--large-devices) {
+        margin-left: 250px;
     }
 }
 
-
 .app-frame__body__overlay {
-    
-    position:absolute;
-    top:0px;
-    left:0px;
-    bottom:0px;
-    right:0px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
     display: none;
 }
 
-
 .app-frame__app-drawer[open] + .app-frame__body > .app-frame__body__overlay {
-
     display: block;
 
-    @media(--large-devices) {
+    @media (--large-devices) {
         display: none;
     }
 }
 
-
 .app-frame__body__header {
-    
     position: absolute;
-    top:0px;
-    width:100%;
+    top: 0;
+    width: 100%;
 }
 
+.app-frame__body__notifications {
+    position: absolute;
+    top: 50px;
+    z-index: 1;
+}
 
 .app-frame__body__page {
-
     position: absolute;
     top: 50px;
     bottom: 50px;
     width: 100%;
 
-    @media(--small-devices) {
-        bottom:0px;
+    @media (--small-devices) {
+        bottom: 0;
     }
 }
 
-
 .app-frame__body__mobile-nav {
-
     position: absolute;
     height: 50px;
-    bottom: 0px;
-    width:100%;
+    bottom: 0;
+    width: 100%;
 
-    @media(--small-devices) {
+    @media (--small-devices) {
         bottom: -50px;
     }
 }
 
-
 .app-frame__body {
-    background-color: #FAFAFA;
+    background-color: #fafafa;
     transition: margin-left 0.2s;
 }
 
-
 .app-frame__body__mobile-nav {
     background-color: #fff;
-    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
     transition: bottom 0.2s;
+}
+
+.app-drawer-container .app-drawer__bottom {
+    /* Positioning */
+    position: absolute;
+    bottom: 0;
+
+    /* Display & Box Model */
+    width: 100%;
+}
+
+.app-drawer-toggle {
+    /* Positioning */
+    position: relative;
+    float: right;
+
+    /* Display & Box Model */
+    display: block;
+    width: 30px;
+    height: 30px;
+    padding: 10px;
+
+    /* Other */
+    color: #ccc;
+}
+
+.app-drawer-toggle svg {
+    fill: currentColor;
 }

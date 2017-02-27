@@ -5,7 +5,7 @@ export enum AppDrawerCommandType {
     Toggle
 }
 
- export class AppDrawerCommand {
+export class AppDrawerCommand {
 
   constructor(public command: AppDrawerCommandType) {}
 
